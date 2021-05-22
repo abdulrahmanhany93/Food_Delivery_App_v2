@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_app/screens/orderPage.dart';
@@ -18,13 +19,24 @@ class FoodContainer extends StatelessWidget {
       children: [
         Expanded(
           child: GestureDetector(
-            onTap: () => Navigator.push(
-                context,
-                Transition.fist(OrderPage(foodName, foodInfo, foodImage))),
+            onTap: () => Navigator.push(context,
+                Transition.fist(OrderPage(foodName, foodInfo, foodImage,foodPrice))),
             child: Hero(
               tag: foodImage,
-              child: Image(
-                image: NetworkImage(foodImage),
+              child: CachedNetworkImage(
+                imageUrl: foodImage,
+                placeholder: (context, url) {
+                  return Center(
+                      child: CircularProgressIndicator(
+                    backgroundColor: Colors.grey,
+                    strokeWidth: 4,
+                  ));
+                }, imageBuilder: (context, provider) {
+                return Image(image: NetworkImage(foodImage));
+              },
+
+               useOldImageOnUrlChange: true ,
+                placeholderFadeInDuration: Duration(seconds: 3),
               ),
             ),
           ),

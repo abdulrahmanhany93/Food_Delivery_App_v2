@@ -35,7 +35,7 @@ class HomePage extends StatelessWidget {
         ],
       ),
       body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Header('Every Bite a', 'Better Burger!'),
+        Header(title: 'Every Bite a',subTitle: 'Better Burger!',),
         CategoryBar(
           height: height,
           categories: categories,

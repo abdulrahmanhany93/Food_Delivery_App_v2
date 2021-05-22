@@ -90,7 +90,7 @@ Map<String, List<FoodItem>> food = {
         'Pasta Cream Vegetarian',
         'https://i.ibb.co/5xbQgC5/gratis-png-taglierini-plato-de-macarrones-cocina-vegetariana-farfalle-fleck-removebg-preview.png',
         23),
-  ]
+  ],
 };
 
 List categories = [

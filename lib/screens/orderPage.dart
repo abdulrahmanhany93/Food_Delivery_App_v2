@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:food_app/widgets/header.dart';
+import 'package:food_app/widgets/orderPageHeader.dart';
 
 class OrderPage extends StatelessWidget {
+  final String foodImage;
   final String foodName;
   final String foodInfo;
-  final String foodImage;
+  final double foodPrice;
 
-  OrderPage(this.foodName, this.foodInfo, this.foodImage);
+
+  OrderPage(this.foodName, this.foodInfo, this.foodImage,this.foodPrice);
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-        backgroundColor: Colors.grey.withOpacity(0.1),
+      backgroundColor: Colors.grey.withOpacity(0.2),
       appBar: AppBar(
-        toolbarHeight: height * 0.1,
         elevation: 0,
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.grey.withOpacity(0.01),
         leading: IconButton(
           color: Colors.white,
           iconSize: 25,
@@ -39,67 +39,84 @@ class OrderPage extends StatelessWidget {
           )
         ],
       ),
-      body: Column(
+      body: ListView(
+
         children: [
           Hero(
             tag: foodImage,
             child: Image(
               image: NetworkImage(foodImage),
-              fit: BoxFit.contain,
-              width: MediaQuery.of(context).size.width * 0.9,
+              fit: BoxFit.cover,
             ),
           ),
-          SizedBox(
-            height: 10,
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+            child: OrderPageHeader(foodName: foodName),
           ),
-          Header(
-            foodName,
-            foodInfo,
-            trailing: Container(
-              color: Colors.white.withOpacity(0.2),
-              width: 110,
-              height: 40,
+          Padding(
+            padding: const EdgeInsets.only(left: 7, right: 8),
+            child: Text(
+              foodInfo,
+              style: TextStyle(
+                color: Colors.white.withOpacity(0.9),
+                fontSize: 17,
+              ),
+            ),
+          ),
+
+        ],
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.only(bottom: 30),
+        child: ListTile(
+          title: Text(
+            'Total Price',
+            style: TextStyle(
+                color: Colors.white70,
+                fontSize: 17,
+                fontWeight: FontWeight.bold),
+          ),
+          subtitle: Text(
+            'EGP $foodPrice',
+            style: TextStyle(
+                color: Colors.white,
+                fontSize:35,
+                fontWeight: FontWeight.bold),
+          ),
+          trailing: Container(
+            width: 200,
+            padding: EdgeInsets.only(left: 5, right: 5),
+            decoration: BoxDecoration(
+                color: Colors.orangeAccent,
+                borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(25),
+                    bottomRight: Radius.circular(25),
+                    topRight: Radius.circular(25))),
+            child: Center(
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Container(
-                    margin: EdgeInsets.symmetric(horizontal: 5),
-                    width: 30,
-                    height: 30,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
-                        color: Colors.white),
-                    child: Center(
-                        child: Icon(
-                      FontAwesomeIcons.plus,
-                      size: 15,
-                    )),
+                  Text(
+                    'Order Now',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold),
                   ),
-                  Text('1',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          letterSpacing: 1.5,
-                          fontWeight: FontWeight.bold)),
-                  Container(
-                    margin: EdgeInsets.symmetric(horizontal: 5),
-                    width: 30,
-                    height: 30,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
-                        color: Colors.white),
-                    child: Center(
-                        child: Icon(
-                      FontAwesomeIcons.minus,
-                      size: 15,
-                    )),
+                  CircleAvatar(
+                    backgroundColor: Colors.white,
+                    maxRadius: 20,
+                    child: Icon(
+                      Icons.shopping_bag_outlined,
+                      size: 25,
+                      color: Colors.black,
+                    ),
                   )
                 ],
               ),
             ),
-          )
-        ],
+          ),
+        ),
       ),
     );
   }

@@ -4,16 +4,18 @@ class Header extends StatelessWidget {
  final String subTitle;
  final Widget trailing;
 
- Header(this.title, this.subTitle,{this.trailing});
+ Header({this.title, this.subTitle,this.trailing});
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      horizontalTitleGap: 0,
-        title: Text(
-          title,
-          style: TextStyle(
-              color: Colors.white, fontSize: 30,letterSpacing: 1.5, fontWeight: FontWeight.bold),
+        title: Align(
+          alignment: Alignment.bottomLeft,
+          child: Text(
+            title,
+            style: TextStyle(
+                color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold),
+          ),
         ),
         subtitle: Container(
           margin: EdgeInsets.symmetric(vertical: 10),

@@ -30,7 +30,9 @@ class _CategoryBarState extends State<CategoryBar> {
             height: widget.height * 0.07,
             child: ListTile(
               title: ListView.builder(
+                controller: change.listViewController,
                 scrollDirection: Axis.horizontal,
+                physics: BouncingScrollPhysics(),
                 itemCount: widget.categories.length,
                 itemBuilder: (context, index) {
                   return Container(
@@ -43,7 +45,10 @@ class _CategoryBarState extends State<CategoryBar> {
                           width: 10,
                           duration: Duration(milliseconds: 500),
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(50),color: change.selected==index?Colors.orangeAccent:Colors.transparent),
+                              borderRadius: BorderRadius.circular(50),
+                              color: change.selected == index
+                                  ? Colors.orangeAccent
+                                  : Colors.transparent),
                         ),
                         Text(
                           widget.categories[index],
