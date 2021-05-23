@@ -24,7 +24,7 @@ class _CategoryBarState extends State<CategoryBar> {
   @override
   Widget build(BuildContext context) {
     return Consumer<ValueChange>(
-      builder: (context, change, child) {
+      builder: (contexts, change, child) {
         return Container(
             margin: EdgeInsets.symmetric(vertical: 30),
             height: widget.height * 0.07,

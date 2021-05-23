@@ -19,8 +19,10 @@ class FoodContainer extends StatelessWidget {
       children: [
         Expanded(
           child: GestureDetector(
-            onTap: () => Navigator.push(context,
-                Transition.fist(OrderPage(foodName, foodInfo, foodImage,foodPrice))),
+            onTap: () => Navigator.push(
+                context,
+                Transition.fist(
+                    OrderPage(foodName, foodInfo, foodImage, foodPrice))),
             child: Hero(
               tag: foodImage,
               child: CachedNetworkImage(
@@ -31,11 +33,11 @@ class FoodContainer extends StatelessWidget {
                     backgroundColor: Colors.grey,
                     strokeWidth: 4,
                   ));
-                }, imageBuilder: (context, provider) {
-                return Image(image: NetworkImage(foodImage));
-              },
-
-               useOldImageOnUrlChange: true ,
+                },
+                imageBuilder: (context, provider) {
+                  return Image(image: NetworkImage(foodImage));
+                },
+                useOldImageOnUrlChange: true,
                 placeholderFadeInDuration: Duration(seconds: 3),
               ),
             ),
@@ -77,14 +79,20 @@ class FoodContainer extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                   fontSize: 17),
             ),
-            CircleAvatar(
-                backgroundColor: Colors.black,
-                maxRadius: 15,
-                child: Icon(
-                  FontAwesomeIcons.plus,
-                  color: Colors.white,
-                  size: 15,
-                ))
+            GestureDetector(
+              onTap: () => Navigator.push(
+                  context,
+                  Transition.fist(
+                      OrderPage(foodName, foodInfo, foodImage, foodPrice))),
+              child: CircleAvatar(
+                  backgroundColor: Colors.black,
+                  maxRadius: 15,
+                  child: Icon(
+                    FontAwesomeIcons.plus,
+                    color: Colors.white,
+                    size: 15,
+                  )),
+            )
           ],
         ),
       ],
