@@ -65,8 +65,8 @@ class _CategoryBarState extends State<CategoryBar> {
                 },
               ),
               trailing: Container(
-                  width: 60,
-                  height: 60,
+                  width: 50,
+                  height: 50,
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.grey, width: 1),
                     borderRadius: BorderRadius.circular(10),
@@ -74,7 +74,7 @@ class _CategoryBarState extends State<CategoryBar> {
                   child: Icon(
                     FontAwesomeIcons.slidersH,
                     color: Colors.white,
-                    size: 25,
+                    size: 20,
                   )),
             ));
       },

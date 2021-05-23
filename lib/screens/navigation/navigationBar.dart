@@ -22,8 +22,9 @@ class NavigationBar extends StatelessWidget {
     return Consumer<ValueChange>(
       builder: (context, change, child) {
         return Scaffold(
+            backgroundColor: Colors.grey.withOpacity(0.05),
             bottomNavigationBar: BottomNavigationBar(
-              backgroundColor: Colors.black.withOpacity(0.89),
+              backgroundColor: Colors.grey.withOpacity(0.15),
               elevation: 0,
               selectedItemColor: Colors.orangeAccent,
               unselectedItemColor: Colors.grey,
@@ -58,6 +59,7 @@ class NavigationBar extends StatelessWidget {
             ),
             body: PageView(
               controller: change.homePageViewController,
+              clipBehavior: Clip.antiAliasWithSaveLayer,
               children: pages,
               onPageChanged: (value){
                 change.updateSelected(value-2);

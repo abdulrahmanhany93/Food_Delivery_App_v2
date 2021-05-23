@@ -6,13 +6,13 @@ class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black.withOpacity(0.89),
+      backgroundColor: Colors.grey.withOpacity(0.15),
       body: Container(
         margin: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
         child: ListView(
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 CircleAvatar(
                   backgroundImage: NetworkImage(
@@ -56,6 +56,10 @@ class _PCardState extends State<PCard> {
     return Container(
       height: MediaQuery.of(context).size.height * 0.1,
       margin: EdgeInsets.symmetric(vertical: 10),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        color: Colors.grey.shade800.withOpacity(0.3),
+      ),
       child: Center(
         child: ListTile(
           contentPadding: EdgeInsets.symmetric(horizontal: 15),
@@ -75,10 +79,7 @@ class _PCardState extends State<PCard> {
           ),
         ),
       ),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        color: Color(0xff242424),
-      ),
+
     );
   }
 }

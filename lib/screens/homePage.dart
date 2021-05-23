@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: Colors.black.withOpacity(0.89),
+      backgroundColor: Colors.grey.withOpacity(0.15),
       appBar: AppBar(
         toolbarHeight: height * 0.09,
         elevation: 0,

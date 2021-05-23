@@ -10,7 +10,7 @@ class Cart extends StatelessWidget {
     return Consumer<FoodCart>(
       builder: (context, cart, child) {
         return Scaffold(
-          backgroundColor: Colors.black.withOpacity(0.89),
+          backgroundColor: Colors.grey.withOpacity(0.15),
           body: SafeArea(
             child: cart.cart.isEmpty
                 ? Center(
