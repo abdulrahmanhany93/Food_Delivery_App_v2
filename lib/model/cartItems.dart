@@ -2,7 +2,7 @@ class CartItems {
   String foodImage;
   String foodName;
   int foodQuantity;
-  double totalPrice;
+  dynamic totalPrice;
 
   CartItems(this.foodImage, this.foodName, this.foodQuantity, this.totalPrice);
 }

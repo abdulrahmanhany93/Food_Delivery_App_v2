@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Transition extends PageRouteBuilder {
-  Transition.fist(Widget page)
+  Transition.first(Widget page)
       : super(
             transitionDuration: Duration(milliseconds: 500),
             reverseTransitionDuration: Duration(milliseconds: 500),

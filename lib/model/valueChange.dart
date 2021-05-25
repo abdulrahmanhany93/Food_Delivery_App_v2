@@ -6,7 +6,7 @@ class ValueChange extends ChangeNotifier {
   final ScrollController listViewController = ScrollController();
   int selected = 0;
   int currentPage = 2;
-  int foodQuantity=1;
+  dynamic foodQuantity=1;
 
   jumpPageView(int value) {
     homePageViewController.animateToPage(value,duration: Duration(seconds: 1),curve: Curves.linearToEaseOut);

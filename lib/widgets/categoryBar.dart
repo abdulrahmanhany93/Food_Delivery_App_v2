@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:food_app/model/foodController.dart';
 import 'package:food_app/model/valueChange.dart';
 import 'package:provider/provider.dart';
 
@@ -8,12 +9,10 @@ class CategoryBar extends StatefulWidget {
   CategoryBar({
     Key key,
     @required this.height,
-    @required this.categories,
     @required this.width,
   }) : super(key: key);
 
   final double height;
-  final List categories;
   final double width;
 
   @override
@@ -23,8 +22,8 @@ class CategoryBar extends StatefulWidget {
 class _CategoryBarState extends State<CategoryBar> {
   @override
   Widget build(BuildContext context) {
-    return Consumer<ValueChange>(
-      builder: (contexts, change, child) {
+    return Consumer2<ValueChange,FoodController>(
+      builder: (contexts, change,food, child) {
         return Container(
             margin: EdgeInsets.symmetric(vertical: 30),
             height: widget.height * 0.07,
@@ -33,7 +32,7 @@ class _CategoryBarState extends State<CategoryBar> {
                 controller: change.listViewController,
                 scrollDirection: Axis.horizontal,
                 physics: BouncingScrollPhysics(),
-                itemCount: widget.categories.length,
+                itemCount: food.food.keys.length,
                 itemBuilder: (context, index) {
                   return Container(
                     margin: EdgeInsets.only(right: widget.width * 0.1),
@@ -51,7 +50,7 @@ class _CategoryBarState extends State<CategoryBar> {
                                   : Colors.transparent),
                         ),
                         Text(
-                          widget.categories[index],
+                          food.food.keys.elementAt(index),
                           style: TextStyle(
                               color: change.selected == index
                                   ? Colors.white

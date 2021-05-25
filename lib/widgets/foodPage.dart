@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:food_app/data/data.dart';
+import 'package:food_app/model/foodController.dart';
 import 'package:food_app/model/valueChange.dart';
 import 'package:food_app/widgets/foodContainer.dart';
 import 'package:provider/provider.dart';
@@ -13,10 +13,11 @@ class FoodPage extends StatefulWidget {
 class _FoodPageState extends State<FoodPage> {
   @override
   Widget build(BuildContext context) {
-    return Consumer<ValueChange>(
-      builder: (context, change, child) {
+    return Consumer2<ValueChange, FoodController>(
+      builder: (context, change, foodController, child) {
+        var foods = foodController.food;
         return PageView.builder(
-            itemCount: food.entries.length,
+            itemCount: foods.values.length,
             controller: change.foodPageViewController,
             physics: BouncingScrollPhysics(),
             onPageChanged: (int value) {
@@ -27,14 +28,18 @@ class _FoodPageState extends State<FoodPage> {
               change.jumpListView();
               return GridView.builder(
                   padding: EdgeInsets.only(bottom: 15),
-                  itemCount: food['category$currentPage'].length,
+                  itemCount: 5,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2, mainAxisSpacing: 10),
                   itemBuilder: (context, index) => FoodContainer(
-                        foodImage: food['category$currentPage'][index].image,
-                        foodName: food['category$currentPage'][index].name,
-                        foodInfo: food['category$currentPage'][index].info,
-                        foodPrice: food['category$currentPage'][index].price,
+                        foodName: foods['${foods.keys.elementAt(currentPage)}']
+                            ['$index'][0],
+                        foodInfo: foods['${foods.keys.elementAt(currentPage)}']
+                            ['$index'][1],
+                        foodImage: foods['${foods.keys.elementAt(currentPage)}']
+                            ['$index'][2],
+                        foodPrice: foods['${foods.keys.elementAt(currentPage)}']
+                            ['$index'][3],
                       ));
             });
       },

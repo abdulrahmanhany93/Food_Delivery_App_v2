@@ -1,5 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:food_app/checkPage.dart';
 import 'package:food_app/model/foodCart.dart';
+import 'package:food_app/model/valueChange.dart';
 import 'package:provider/provider.dart';
 
 class Cart extends StatelessWidget {
@@ -7,8 +11,8 @@ class Cart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<FoodCart>(
-      builder: (context, cart, child) {
+    return Consumer2<FoodCart,ValueChange>(
+      builder: (context, cart, change,child) {
         return Scaffold(
           backgroundColor: Colors.grey.withOpacity(0.15),
           body: SafeArea(
@@ -68,16 +72,18 @@ class Cart extends StatelessWidget {
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold)),
                               trailing: CircleAvatar(
-                                  maxRadius: 15,
-                                  backgroundColor: Colors.black,
-                                  child:  InkWell(
-                                    onTap: ()=>cart.removeFromCart(cart.cart[index].foodName),
-                                    child: Icon(
-                                      Icons.close,
-                                      size: 20,
-                                      color: Colors.white,
-                                    ),
-                                  ),),
+                                maxRadius: 15,
+                                backgroundColor: Colors.black,
+                                child: InkWell(
+                                  onTap: () => cart.removeFromCart(
+                                      cart.cart[index].foodName),
+                                  child: Icon(
+                                    Icons.close,
+                                    size: 20,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
                             ))
                           ],
                         ),
@@ -88,7 +94,7 @@ class Cart extends StatelessWidget {
           bottomNavigationBar: cart.cart.isEmpty
               ? null
               : Container(
-            margin: EdgeInsets.only(bottom: 10),
+                  margin: EdgeInsets.only(bottom: 10),
                   height: 40,
                   decoration: BoxDecoration(
                       color: Colors.transparent,
@@ -97,21 +103,34 @@ class Cart extends StatelessWidget {
                     children: [
                       Expanded(
                         child: ListTile(
-                          trailing: Container(
-                            width: 150,
-                            decoration: BoxDecoration(
-                                color: Colors.orangeAccent,
-                                borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(25),
-                                    bottomRight: Radius.circular(25),
-                                    topRight: Radius.circular(25))),
-                            child: Center(
-                              child: Text(
-                                'Order Now',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 25,
-                                    fontWeight: FontWeight.bold),
+                          trailing: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (__) => CheckPage()));
+                              Timer(Duration(seconds: 1), (){
+                                 cart.makeOrder();
+                                 change.jumpPageView(2);
+                                 change.updatePage(2);
+                              });
+                            },
+                            child: Container(
+                              width: 150,
+                              decoration: BoxDecoration(
+                                  color: Colors.orangeAccent,
+                                  borderRadius: BorderRadius.only(
+                                      bottomLeft: Radius.circular(25),
+                                      bottomRight: Radius.circular(25),
+                                      topRight: Radius.circular(25))),
+                              child: Center(
+                                child: Text(
+                                  'Order Now',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 25,
+                                      fontWeight: FontWeight.bold),
+                                ),
                               ),
                             ),
                           ),

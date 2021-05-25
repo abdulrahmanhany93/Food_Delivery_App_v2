@@ -9,7 +9,7 @@ class OrderPage extends StatelessWidget {
   final String foodImage;
   final String foodName;
   final String foodInfo;
-  final double foodPrice;
+ final dynamic foodPrice;
 
   OrderPage(this.foodName, this.foodInfo, this.foodImage, this.foodPrice);
 

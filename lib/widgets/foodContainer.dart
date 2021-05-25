@@ -8,7 +8,7 @@ class FoodContainer extends StatelessWidget {
   final String foodImage;
   final String foodName;
   final String foodInfo;
-  final double foodPrice;
+  final dynamic foodPrice;
 
   FoodContainer({this.foodImage, this.foodName, this.foodInfo, this.foodPrice});
 
@@ -21,7 +21,7 @@ class FoodContainer extends StatelessWidget {
           child: GestureDetector(
             onTap: () => Navigator.push(
                 context,
-                Transition.fist(
+                Transition.first(
                     OrderPage(foodName, foodInfo, foodImage, foodPrice))),
             child: Hero(
               tag: foodImage,
@@ -82,7 +82,7 @@ class FoodContainer extends StatelessWidget {
             GestureDetector(
               onTap: () => Navigator.push(
                   context,
-                  Transition.fist(
+                  Transition.first(
                       OrderPage(foodName, foodInfo, foodImage, foodPrice))),
               child: CircleAvatar(
                   backgroundColor: Colors.black,
