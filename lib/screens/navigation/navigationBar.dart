@@ -52,7 +52,6 @@ class NavigationBar extends StatelessWidget {
           ),
           body: PageView(
             controller: change.homePageViewController,
-            clipBehavior: Clip.antiAliasWithSaveLayer,
             children: [
               Inbox(),
               Favorite(),

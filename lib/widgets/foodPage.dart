@@ -15,7 +15,7 @@ class _FoodPageState extends State<FoodPage> {
   Widget build(BuildContext context) {
     return Consumer2<ValueChange, FoodController>(
       builder: (context, change, foodController, child) {
-        var foods = foodController.food;
+        var foods = foodController.foodData;
         return PageView.builder(
             itemCount: foods.values.length,
             controller: change.foodPageViewController,

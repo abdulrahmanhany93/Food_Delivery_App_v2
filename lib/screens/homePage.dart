@@ -5,12 +5,15 @@ import 'package:food_app/model/foodController.dart';
 import 'package:food_app/widgets/categoryBar.dart';
 import 'package:food_app/widgets/foodPage.dart';
 import 'package:food_app/widgets/header.dart';
+import 'package:food_app/widgets/search.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   final FoodController food;
 
   HomePage(this.food);
+
+  List foodNames = FoodController().foodName;
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -36,9 +39,18 @@ class _HomePageState extends State<HomePage> {
                 border: Border.all(color: Colors.grey, width: 2),
                 borderRadius: BorderRadius.circular(30),
               ),
-              child: Icon(
-                FontAwesomeIcons.search,
-                size: 20,
+              child: IconButton(
+                iconSize: 20,
+                alignment: Alignment.center,
+                onPressed: () {
+                  showSearch(
+                      context: context,
+                      delegate: Search(foodController.foodName));
+                },
+                icon: Icon(
+                  FontAwesomeIcons.search,
+                  color: Colors.white,
+                ),
               ),
             )
           ],

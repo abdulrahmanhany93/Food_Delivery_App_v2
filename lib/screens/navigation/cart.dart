@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:food_app/checkPage.dart';
+import 'package:food_app/screens/checkPage.dart';
 import 'package:food_app/model/foodCart.dart';
 import 'package:food_app/model/valueChange.dart';
 import 'package:provider/provider.dart';

@@ -32,7 +32,7 @@ class _CategoryBarState extends State<CategoryBar> {
                 controller: change.listViewController,
                 scrollDirection: Axis.horizontal,
                 physics: BouncingScrollPhysics(),
-                itemCount: food.food.keys.length,
+                itemCount: food.foodData.keys.length,
                 itemBuilder: (context, index) {
                   return Container(
                     margin: EdgeInsets.only(right: widget.width * 0.1),
@@ -50,7 +50,7 @@ class _CategoryBarState extends State<CategoryBar> {
                                   : Colors.transparent),
                         ),
                         Text(
-                          food.food.keys.elementAt(index),
+                          food.foodData.keys.elementAt(index),
                           style: TextStyle(
                               color: change.selected == index
                                   ? Colors.white

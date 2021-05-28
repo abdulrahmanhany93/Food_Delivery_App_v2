@@ -2,15 +2,22 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 
 class FoodController extends ChangeNotifier {
-  Map<String,dynamic> food = {};
+  Map<String, dynamic> foodData = {};
+  List foodName = [];
 
   getData() async {
-    food = {};
-    await  FirebaseFirestore.instance
+    foodData = {};
+    await FirebaseFirestore.instance
         .collection('home')
         .doc('8eMRwXRWeGVXloLQNea6')
         .get()
-        .then((value) => food = value.data());
+        .then((value) => foodData = value.data());
+
+    foodData.values.forEach((e) {
+      e.values.forEach((x) {
+        foodName.add(x[0]);
+      });
+    });
     notifyListeners();
   }
 
